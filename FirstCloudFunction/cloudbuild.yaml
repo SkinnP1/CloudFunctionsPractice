@@ -1,0 +1,20 @@
+ steps:
+
+ - name: 'python:3.8'
+ entrypoint: 'bash'
+ args: 
+   - '-c'
+   - |
+       pip3 install -r requirements.txt
+       pytest
+
+ - name: 'gcr.io/cloud-builders/gcloud'
+  args:
+  - functions 
+  - deploy
+  - Function
+  - --runtime=python38
+  - --source=.
+  - --entry-point=hello_http
+  - --trigger-topic=http 
+  - --region=europe-west3  

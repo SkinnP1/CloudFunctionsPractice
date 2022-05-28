@@ -1,0 +1,24 @@
+steps:
+- name: 'gcr.io/cloud-builders/git'
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+        # Cloud Build doesn't recover the .git file. Thus checkout the repo for this
+        git clone --branch master https://github.com/guillaumeblaquiere/cloudbuildtest.git /tmp/repo ;
+        # Copy only the .git file
+        mv /tmp/repo/.git .
+        # Make a diff between this version and the previous one and store the result into a file
+        git diff --name-only --diff-filter=AMDR @~..@ | grep "/" | cut -d"/" -f1 | uniq > /workspace/diff
+
+# Do what you want, by performing a loop in to the directory. Here launch a cloud build
+- name: 'gcr.io/cloud-builders/gcloud'
+  entrypoint: /bin/bash
+  args:
+    - -c
+    - |
+       for i in $$(cat /workspace/diff); do
+       cd $$i
+           gcloud builds submit --region=us-west2 --config cloudbuild.yaml .
+       cd ..
+       done
