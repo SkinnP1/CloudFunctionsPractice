@@ -22,5 +22,3 @@ steps:
            gcloud builds submit --region=us-west2 --config cloudbuild.yaml .
        cd ..
        done
- options:
-  logging: CLOUD_LOGGING_ONLY
