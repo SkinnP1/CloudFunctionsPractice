@@ -17,4 +17,5 @@
   - --source=.
   - --entry-point=hello_http
   - --trigger-topic=http 
-  - --region=europe-west3  
+  - --region=europe-west3   
+
