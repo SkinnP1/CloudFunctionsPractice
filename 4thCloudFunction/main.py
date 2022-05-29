@@ -2,7 +2,7 @@ from flask import escape
 import functions_framework
 
 @functions_framework.http
-def hello_onkar(request):
+def hello_nigel(request):
     """HTTP Cloud Function.
     Args:
         request (flask.Request): The request object.

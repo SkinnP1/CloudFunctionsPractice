@@ -1,6 +1,7 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   entrypoint: /bin/bash
+  timeout: 3600s
   args:
     - -c
     - |
@@ -23,3 +24,4 @@ steps:
            gcloud builds submit
        cd ..
        done
+  
