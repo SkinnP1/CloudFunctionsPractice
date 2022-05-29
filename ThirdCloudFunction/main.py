@@ -14,7 +14,7 @@ def hello_name(request):
     """
     request_json = request.get_json(silent=True)
     request_args = request.args
-
+    a = 5 
     if request_json and 'fname' in request_json and 'lname' in request_json:
         fname = request_json['fname']
         lname = request_json['lname']

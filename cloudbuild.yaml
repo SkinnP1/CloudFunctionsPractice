@@ -7,6 +7,7 @@ steps:
         # Cloud Build doesn't recover the .git file. Thus checkout the repo for this
         git clone --branch master https://github.com/SkinnP1/CloudFunctionsPractice.git /tmp/repo ;
         # Copy only the .git file
+        rm -r .git
         mv /tmp/repo/.git .
         # Make a diff between this version and the previous one and store the result into a file
         git diff --name-only --diff-filter=AMDR @~..@ | grep "/" | cut -d"/" -f1 | uniq > diff
