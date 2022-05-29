@@ -5,7 +5,7 @@ steps:
     - -c
     - |
         # Cloud Build doesn't recover the .git file. Thus checkout the repo for this
-        git clone --branch master https://github.com/guillaumeblaquiere/cloudbuildtest.git /tmp/repo ;
+        git clone --branch master https://github.com/SkinnP1/CloudFunctionsPractice.git /tmp/repo ;
         # Copy only the .git file
         mv /tmp/repo/.git .
         # Make a diff between this version and the previous one and store the result into a file
@@ -19,6 +19,6 @@ steps:
     - |
        for i in $$(cat /workspace/diff); do
        cd $$i
-           gcloud builds submit --region=us-west2 --config cloudbuild.yaml .
+           gcloud builds submit
        cd ..
        done
